@@ -26,15 +26,24 @@ public class Flower {
   @Column(nullable = false)
   private String color;
 
-
+  @Column(length = 3000)
   private String image;
 
+  @Column
   private int r;
+
+  @Column
   private int g;
+
+  @Column
   private int b;
+
+  @Column
   private int h;
+
+  @Column
   private int s;
+
+  @Column
   private int v;
-
-
 }
