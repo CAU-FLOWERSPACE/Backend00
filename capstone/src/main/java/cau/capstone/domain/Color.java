@@ -15,7 +15,7 @@ public class Color {
   private Long color_id;
 
   @Column(nullable = false)
-  private String color;
+  private ColorClassification color;
 
   @Column(nullable = false)
   private String effect;
