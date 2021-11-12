@@ -19,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.nio.charset.StandardCharsets;
 
-@Configuration
 @RequiredArgsConstructor
 public class SpaceApiRestTemplate {
 
