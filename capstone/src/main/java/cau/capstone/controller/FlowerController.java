@@ -1,10 +1,9 @@
 package cau.capstone.controller;
 
-import cau.capstone.dto.auth.FlowerListResponse;
-import cau.capstone.dto.auth.FlowerResponse;
+import cau.capstone.dto.flower.FlowerListResponse;
+import cau.capstone.dto.flower.FlowerResponse;
 import cau.capstone.service.FlowerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

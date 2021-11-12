@@ -1,4 +1,4 @@
-package cau.capstone.dto.auth;
+package cau.capstone.dto.flower;
 
 import cau.capstone.domain.Flower;
 import lombok.Getter;

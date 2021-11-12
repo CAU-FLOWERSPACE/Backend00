@@ -1,14 +1,11 @@
 package cau.capstone.service;
 
 import cau.capstone.domain.Flower;
-import cau.capstone.dto.auth.FlowerListResponse;
-import cau.capstone.dto.auth.FlowerResponse;
+import cau.capstone.dto.flower.FlowerListResponse;
+import cau.capstone.dto.flower.FlowerResponse;
 import cau.capstone.repository.FlowerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

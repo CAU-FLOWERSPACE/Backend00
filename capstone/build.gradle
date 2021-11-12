@@ -16,6 +16,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+
 }
 
 dependencies {
@@ -31,6 +32,7 @@ dependencies {
   implementation group: 'com.auth0', name: 'java-jwt', version: '3.10.3'
 
   implementation 'org.springframework.boot:spring-boot-starter-validation:2.4.5'
+
 
   runtimeOnly 'mysql:mysql-connector-java'
 

@@ -26,5 +26,6 @@ public class Plant {
   @Column(nullable = false)
   private String place;
 
-  // 이미지
+  @Column(length = 3000)
+  private String image;
 }
