@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ColorApiRequest {
+public class ApiRequest {
 
     private String image_path;
 }
