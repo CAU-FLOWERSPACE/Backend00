@@ -1,3 +1,6 @@
+.DS_Store
+capstone/src/test/
+
 HELP.md
 .gradle
 build/
