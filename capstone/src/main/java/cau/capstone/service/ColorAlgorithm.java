@@ -2,6 +2,7 @@ package cau.capstone.service;
 
 import cau.capstone.dto.color.ColorClassification;
 import cau.capstone.dto.color.RGBColor;
+import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ColorAlgoService {
+public class ColorAlgorithm {
 
     List<RGBColor> RGBColors;
     static float[] hsbValues;
@@ -21,13 +22,13 @@ public class ColorAlgoService {
     private static final List<ColorClassification> values = new ArrayList<>(Arrays.asList(ColorClassification.values()));
 
     // 생성자
-    public ColorAlgoService(List<RGBColor> RGBColors) {
+    public ColorAlgorithm(List<RGBColor> RGBColors) {
         RGBColors.sort(Collections.reverseOrder());
         this.RGBColors = RGBColors.subList(0, 3);  // 3 번째 색상까지만 사용
     }
 
     // BaseColor 채도 get method
-    public static int getBaseS() {
+    public int getBaseS() {
         return BaseS;
     }
 
@@ -41,7 +42,7 @@ public class ColorAlgoService {
         int H = Math.round(hsbValues[0] * 360);
         BaseS = Math.round(hsbValues[1] * 100);  // baseColor 의 채도만 고려
 
-        // H 가 0 인 경우 -> r==g==b : 화이트 꽃 추천
+        // H, S 가 모두 0 인 경우 -> r==g==b : 화이트 꽃 추천
         if (H == 0 && BaseS == 0) {
             recommendColors = values.subList(7, 8);  // WHITE
             return recommendColors;
@@ -110,9 +111,9 @@ public class ColorAlgoService {
 
     // H 의 범위에 따라 Color 를 분류해주는 method
     private ColorClassification getColor(int H) {
-        if (H == 0) {
-            return ColorClassification.WHITE;
-        }
+//        if (H == 0) {
+//            return ColorClassification.WHITE;
+//        }  // 꽃이 흰색인 경우는 위에서 처리 됨
         if (348 <= H || H <= 12) {
             return ColorClassification.RED;
         }
