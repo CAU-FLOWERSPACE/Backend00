@@ -14,10 +14,10 @@ public class Color {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long color_id;
 
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private ColorClassification color;
 
-  @Column(nullable = false)
   private String effect;
 
 //  @Column(nullable = false)

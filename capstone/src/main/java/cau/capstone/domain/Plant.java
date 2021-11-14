@@ -19,9 +19,6 @@ public class Plant {
   @Column(nullable = false)
   private String plant_feature;
 
-//  @Column(nullable = false)
-//  private String place;
-
   @Column(length = 3000)
   private String image;
 }
