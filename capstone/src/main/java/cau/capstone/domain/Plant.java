@@ -16,7 +16,7 @@ public class Plant {
   @Column
   private String plant_name;
 
-  @Column(nullable = false)
+  @Column(length = 7000)
   private String plant_feature;
 
   @Column(length = 3000)
