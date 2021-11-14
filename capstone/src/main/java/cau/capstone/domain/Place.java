@@ -11,9 +11,6 @@ import javax.persistence.*;
 public class Place {
 
   @Id
-  private Long place_id;
-
-  @Column(nullable = false)
   private String place;
 
   @Column(length = 1000)
