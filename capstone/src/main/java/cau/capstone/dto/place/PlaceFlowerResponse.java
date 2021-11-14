@@ -18,6 +18,6 @@ public class PlaceFlowerResponse {
     public static class FlowerResponse {
         private Long flower_id;
         private String flower_name;
-        private String image_path;
+        private String image;
     }
 }

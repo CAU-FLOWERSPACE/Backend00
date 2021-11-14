@@ -20,6 +20,6 @@ public class PlacePlantResponse {
     public static class PlantResponse {
         private Long plant_id;
         private String plant_name;
-        private String image_path;
+        private String image;
     }
 }
