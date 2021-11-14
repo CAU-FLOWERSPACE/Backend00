@@ -1,5 +1,6 @@
 package cau.capstone.domain;
 
+import cau.capstone.dto.color.ColorClassification;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
