@@ -11,20 +11,16 @@ import javax.persistence.*;
 public class Plant {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long plant_id;
 
-  @Column(nullable = false)
+  @Column
   private String plant_name;
-
-  @Column(nullable = false)
-  private String effect;
 
   @Column(nullable = false)
   private String plant_feature;
 
-  @Column(nullable = false)
-  private String place;
+//  @Column(nullable = false)
+//  private String place;
 
   @Column(length = 3000)
   private String image;

@@ -21,7 +21,6 @@ public class FlowerController {
   public List<FlowerListResponse> findFlowerList(@PathVariable String color) {
 //    return flowerService.꽃추천목록(color, paging);
     return flowerService.꽃추천목록(color);
-
   }
 
   // 꽃상세정보 api

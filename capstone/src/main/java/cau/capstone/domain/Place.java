@@ -11,12 +11,11 @@ import javax.persistence.*;
 public class Place {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long place_id;
 
   @Column(nullable = false)
   private String place;
 
-  @Column(nullable = false)
+  @Column(length = 1000)
   private String effect;
 }

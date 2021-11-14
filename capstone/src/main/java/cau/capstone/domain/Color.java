@@ -20,8 +20,8 @@ public class Color {
   @Column(nullable = false)
   private String effect;
 
-  @Column(nullable = false)
-  private int option_num;
+//  @Column(nullable = false)
+//  private int option_num;
 
 
 

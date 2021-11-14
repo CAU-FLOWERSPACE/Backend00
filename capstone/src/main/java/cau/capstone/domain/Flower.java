@@ -4,14 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Flower {
+public class Flower{
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long flower_id;
 
   @Column(nullable = false)
