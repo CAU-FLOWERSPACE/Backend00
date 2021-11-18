@@ -15,13 +15,14 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
   private final UserService userService;
 
   // 회원가입
 
-  @PostMapping("/api/join")
+  @PostMapping("/join")
   public ResponseEntity<JoinResponse> join(@Valid @RequestBody JoinRequest joinRequest) {
 
     log.info("회원가입 요청 완료");
@@ -32,7 +33,7 @@ public class UserController {
   }
 
   // 이메일 중복체크
-  @GetMapping("/api/user/check/email/{email}")
+  @GetMapping("/user/check/email/{email}")
   public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
     log.info("Controller :: check duplicate email");
 
