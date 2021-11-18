@@ -15,7 +15,7 @@ public class Recommend{ // 추천id | 식물id | 장소이름
 
   @ManyToOne
   @JoinColumn(name = "plant_id", referencedColumnName = "plant_id")
-  private Plant plant_id;
+  private Plant plant;
 
   @ManyToOne
   @JoinColumn(name = "place", referencedColumnName = "place")
