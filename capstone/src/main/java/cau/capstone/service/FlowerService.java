@@ -21,8 +21,8 @@ public class FlowerService {
 
   // 꽃 추천 목록
   @Transactional(readOnly = true)
-  public List<FlowerListResponse> 꽃추천목록(String color) {
-    List<Flower> flowerList = flowerRepository.findByColor(color);
+  public List<FlowerListResponse> recommendFlowerList(String color) {
+    List<Flower> flowerList = flowerRepository.findFlowersByColor(color);
     List<FlowerListResponse> flowerListResponses = new ArrayList<>();
     for (Flower entity : flowerList) {
       flowerListResponses.add(new FlowerListResponse(entity));
@@ -33,7 +33,7 @@ public class FlowerService {
 
   // 꽃 상세보기
   @Transactional
-  public FlowerResponse 꽃상세보기(Long flower_id) {
+  public FlowerResponse getFlowerInfo(Long flower_id) {
     Flower entity = flowerRepository.findById(flower_id).get();
 
     return new FlowerResponse(entity);
