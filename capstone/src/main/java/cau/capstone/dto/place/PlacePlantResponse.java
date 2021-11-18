@@ -2,24 +2,30 @@ package cau.capstone.dto.place;
 
 import cau.capstone.domain.Plant;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlacePlantResponse {
     private String place;
     private List<PlantResponse> plants;
 
-    @Data
+    @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PlantResponse {
         private Long plant_id;
         private String plant_name;
         private String image;
+
+        public PlantResponse(Plant plant) {
+            this.plant_id = plant.getPlant_id();
+            this.plant_name = plant.getPlant_name();
+            this.image = plant.getImage();
+        }
     }
 }

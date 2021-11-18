@@ -2,7 +2,9 @@ package cau.capstone.dto.color;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class RGBColor implements Comparable {
