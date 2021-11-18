@@ -4,60 +4,92 @@ import cau.capstone.api.dto.ApiRequest;
 import cau.capstone.api.dto.ColorApiResponse;
 import cau.capstone.api.dto.PlaceApiResponse;
 
-import lombok.RequiredArgsConstructor;
+import cau.capstone.dto.color.RGBColor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Objects;
 
-@RequiredArgsConstructor
+@Configuration
 public class SpaceApiRestTemplate {
 
     private final RestTemplate restTemplate;
+    private final JSONParser jsonParser;
+
+    public SpaceApiRestTemplate() {
+
+        this.restTemplate = new RestTemplate();
+        this.jsonParser = new JSONParser();
+    }
 
     public PlaceApiResponse placeAPI(ApiRequest apiRequest) {
         ResponseEntity<String> response = getApiResponse( "https://apis.openapi.sk.com/urbanbase/v1/space/classifier", apiRequest);
 
-        JSONParser jsonParser = new JSONParser();
+        // Json parsing
         JSONObject body = null;
         try {
             body = (JSONObject) jsonParser.parse(response.getBody());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        var data = (JSONObject) body.get("data");
+
+        /* Objects.requireNonNull()
+         * NPE 를 명시적으로 던지는 것이 JVM 이 발견해서 발생시키는 것 보다 성능상의 이점이 있다
+         * requireNonNull 은 해당 참조가 null 일 경우 즉시 개발자에게 알려줌
+         * */
+        var data = (JSONObject) Objects.requireNonNull(body).get("data");
         var result = (JSONObject) ((JSONArray) ((JSONObject) ((JSONArray) data.get("results")).get(0)).get("results")).get(0);  // label, probability
+
         String spaceImageUuid = data.get("space_image_uuid").toString();
+        String place = result.get("label").toString();
 
-        PlaceApiResponse placeApiResponse = new PlaceApiResponse(spaceImageUuid, result.get("label").toString(), (Double) result.get("probability"));
+        if ((Objects.equals(place, "room")) || (Objects.equals(place, "dressingroom"))) {
+            place = "bedroom";
+        }
+        else if (Objects.equals(place, "diningroom")) {
+            place = "kitchen";
+        }
 
-        return placeApiResponse;
+        return new PlaceApiResponse(spaceImageUuid, place, (Double) result.get("probability"));
     }
 
 
     public ColorApiResponse colorAPI(ApiRequest apiRequest) {
-        ResponseEntity<String> response = getApiResponse( "https://apis.openapi.sk.com/urbanbase/v1/space/extractor", apiRequest);
+        ResponseEntity<String> response = getApiResponse("https://apis.openapi.sk.com/urbanbase/v1/space/extractor", apiRequest);
 
-        JSONParser jsonParser = new JSONParser();
+        // Json parsing
         JSONObject body = null;
         try {
             body = (JSONObject) jsonParser.parse(response.getBody());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        var data = (JSONObject) body.get("data");
-        var results = (JSONArray) ((JSONObject) ((JSONArray) data.get("results")).get(0)).get("results");  // RGB list
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        var data = (JSONObject) Objects.requireNonNull(body).get("data");
+        var results = (JSONArray)((JSONObject) ((JSONArray) data.get("results")).get(0)).get("results");  // rgb color array
+
         String spaceImageUuid = data.get("space_image_uuid").toString();
+        List<RGBColor> rgbColors = null;
+        try {
+            rgbColors = objectMapper.readValue(results.toJSONString(), new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
-//        ColorApiResponse colorApiResponse = new ColorApiResponse(spaceImageUuid, results);
-
-        return new ColorApiResponse(spaceImageUuid, results);
+        return new ColorApiResponse(spaceImageUuid, rgbColors);
     }
 
     private ResponseEntity<String> getApiResponse(String spaceApiUrl, ApiRequest apiRequest) {
@@ -73,8 +105,7 @@ public class SpaceApiRestTemplate {
         // HttpEntity 는 header 와 body 를 합쳐준다
         HttpEntity<ApiRequest> entity = new HttpEntity<>(apiRequest, headers);
 
-//        ResponseEntity<String> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.POST, entity, String.class);
-
-        return restTemplate.exchange(uriComponents.toString(), HttpMethod.POST, entity, String.class);
+        return restTemplate.exchange(uriComponents.toString(), HttpMethod.POST, entity, String.class);  // api response
     }
+
 }
