@@ -26,18 +26,17 @@ import java.util.Objects;
 public class SpaceApiRestTemplate {
 
     private final RestTemplate restTemplate;
-    private final JSONParser jsonParser;
 
     public SpaceApiRestTemplate() {
 
         this.restTemplate = new RestTemplate();
-        this.jsonParser = new JSONParser();
     }
 
     public PlaceApiResponse placeAPI(ApiRequest apiRequest) {
         ResponseEntity<String> response = getApiResponse( "https://apis.openapi.sk.com/urbanbase/v1/space/classifier", apiRequest);
 
         // Json parsing
+        JSONParser jsonParser = new JSONParser();
         JSONObject body = null;
         try {
             body = (JSONObject) jsonParser.parse(response.getBody());
@@ -70,6 +69,7 @@ public class SpaceApiRestTemplate {
         ResponseEntity<String> response = getApiResponse("https://apis.openapi.sk.com/urbanbase/v1/space/extractor", apiRequest);
 
         // Json parsing
+        JSONParser jsonParser = new JSONParser();
         JSONObject body = null;
         try {
             body = (JSONObject) jsonParser.parse(response.getBody());

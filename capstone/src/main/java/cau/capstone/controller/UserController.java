@@ -1,6 +1,5 @@
 package cau.capstone.controller;
 
-import cau.capstone.domain.User;
 import cau.capstone.dto.auth.JoinRequest;
 import cau.capstone.dto.auth.JoinResponse;
 import cau.capstone.service.UserService;
@@ -15,14 +14,13 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
   private final UserService userService;
 
   // 회원가입
 
-  @PostMapping("/join")
+  @PostMapping("/api/join")
   public ResponseEntity<JoinResponse> join(@Valid @RequestBody JoinRequest joinRequest) {
 
     log.info("회원가입 요청 완료");
@@ -33,7 +31,7 @@ public class UserController {
   }
 
   // 이메일 중복체크
-  @GetMapping("/user/check/email/{email}")
+  @GetMapping("/api/user/check/email/{email}")
   public ResponseEntity<?> checkEmail(@PathVariable("email") String email) {
     log.info("Controller :: check duplicate email");
 
