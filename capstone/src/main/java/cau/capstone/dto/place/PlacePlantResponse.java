@@ -18,13 +18,13 @@ public class PlacePlantResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PlantResponse {
-        private Long plant_id;
-        private String plant_name;
+        private Long id;
+        private String name;
         private String image;
 
         public PlantResponse(Plant plant) {
-            this.plant_id = plant.getPlant_id();
-            this.plant_name = plant.getPlant_name();
+            this.id = plant.getPlant_id();
+            this.name = plant.getPlant_name();
             this.image = plant.getImage();
         }
     }

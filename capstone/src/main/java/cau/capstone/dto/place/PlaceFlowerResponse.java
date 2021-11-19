@@ -17,13 +17,13 @@ public class PlaceFlowerResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class FlowerResponse {
-        private Long flower_id;
-        private String flower_name;
+        private Long id;
+        private String name;
         private String image;
 
         public FlowerResponse(Flower flower) {
-            this.flower_id = flower.getFlower_id();
-            this.flower_name = flower.getFlower_name();
+            this.id = flower.getFlower_id();
+            this.name = flower.getFlower_name();
             this.image = flower.getImage();
         }
     }

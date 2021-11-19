@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 public class FlowerResponse {
 
-  private String flower_name; // 꽃 이름
+  private String name; // 꽃 이름
 
   private String mean; // 꽃말
 
-  private String flower_feature; // 꽃특징
+  private String feature; // 꽃특징
 
   private String color; // 꽃색
 
@@ -18,9 +18,9 @@ public class FlowerResponse {
 
 
   public FlowerResponse(Flower entity) {
-    this.flower_name = entity.getFlower_name();
+    this.name = entity.getFlower_name();
     this.mean = entity.getMean();
-    this.flower_feature = entity.getFlower_feature();
+    this.feature = entity.getFlower_feature();
     this.color = entity.getColor();
     this.image = entity.getImage();
   }

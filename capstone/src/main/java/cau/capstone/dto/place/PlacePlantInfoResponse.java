@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlacePlantInfoResponse {
-    private Long plant_id;
-    private String plant_name;
-    private String plant_feature;
+    private Long id;
+    private String name;
+    private String feature;
     private String image;
 
     public PlacePlantInfoResponse(Plant plant) {
-        this.plant_id= plant.getPlant_id();
-        this.plant_name = plant.getPlant_name();
-        this.plant_feature = plant.getPlant_feature();
+        this.id = plant.getPlant_id();
+        this.name = plant.getPlant_name();
+        this.feature = plant.getPlant_feature();
         this.image = plant.getImage();
     }
 }
