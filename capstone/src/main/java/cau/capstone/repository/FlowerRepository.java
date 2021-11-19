@@ -19,11 +19,11 @@ public interface FlowerRepository extends JpaRepository<Flower, Long> {
   Optional<Flower> findById(Long flower_id);
 
   @Query(nativeQuery = true, value = "SELECT * FROM Flower where color = :color and s >= :s order by rand() LIMIT 1")
-  List<Flower> findByColorAndSGreaterThanEqual(@Param("color") String color, int s);  // 공간이 진한 경우 채도 높은 꽃
+  List<Flower> findByColorAndSGreaterThanEqual(String color, int s);  // 공간이 진한 경우 채도 높은 꽃
 
   @Query(nativeQuery = true, value = "SELECT * FROM Flower where color = :color and s < :s order by rand() LIMIT 1")
-  List<Flower> findByColorAndSLessThan(@Param("color") String color, int s);  // 공간이 진한 경우 채도 낮은 꽃
+  List<Flower> findByColorAndSLessThan(String color, int s);  // 공간이 진한 경우 채도 낮은 꽃
 
   @Query(nativeQuery = true, value = "SELECT * FROM Flower where color = :color order by rand() LIMIT 1")
-  List<Flower> findFlowerByColor(@Param("color") String color);
+  List<Flower> findFlowerByColor(String color);
 }
