@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PlacePlantResponse {
     private String place;
+    private String effect;
     private List<PlantResponse> plants;
 
     @Getter

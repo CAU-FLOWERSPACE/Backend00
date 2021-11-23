@@ -41,13 +41,19 @@ public class PlaceService {
             plantResponses.add(new PlantResponse(entity.getPlant()));
         }
 
-        return new PlacePlantResponse(place.getPlace(), plantResponses);
+        return new PlacePlantResponse(place.getPlace(), place.getEffect(), plantResponses);
     }
 
     public PlacePlantInfoResponse getPlacePlantInfo(Long id) {
         Plant plant = plantRepository.findById(id).get();
+//        List<Recommend> recommendList = recommendRepository.findRecommendsByPlant(plant);
+//        List<PlaceResponse> placeResponses = new ArrayList<>();
 
-        return new PlacePlantInfoResponse(plant);
+//        for (Recommend entity : recommendList) {
+//            placeResponses.add(new PlaceResponse(entity.getPlace()));
+//        }
+
+        return new PlacePlantInfoResponse(plant);  // , placeResponses
     }
 
     public PlaceFlowerResponse recommendPlaceFlowerList(ApiRequest apiRequest) {
