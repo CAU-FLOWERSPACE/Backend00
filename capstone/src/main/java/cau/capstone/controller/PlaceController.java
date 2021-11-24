@@ -32,4 +32,13 @@ public class PlaceController {
     public PlaceFlowerResponse postPlaceFlowers(@RequestBody ApiRequest apiRequest) {
         return placeService.recommendPlaceFlowerList(apiRequest);
     }
+
+    // AR 누르는 api 하나 더 생성
+    @GetMapping("/place/ar")
+//    @ResponseBody
+    public String placeAR(@RequestBody PlacePlantResponse placePlantResponse) {
+
+        return "webAR";
+    }
 }
+
