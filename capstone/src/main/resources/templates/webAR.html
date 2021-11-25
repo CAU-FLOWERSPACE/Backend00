@@ -19,8 +19,8 @@
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 <!--                <a class="plant-obj" id="1" ><img src="../static/2d/아이라이너 장미.jpg" width="90px" height="120px"><p>아이라이너 장미</p></a>-->
-                <a class="plant-obj" th:each="plant : ${plantList}" th:id="${plant.id}" th:src="${plant.image}">
-                    <img th:src="${plant.image}" width="90px" height="120px">
+                <a class="plant-obj" th:each="plant : ${plantList}" th:id="${plant.id}" th:src="${plant.image}" crossorigin="anonymous">
+                    <img th:src="${plant.image}" width="90px" height="120px" crossorigin="anonymous">
                     <span th:text="${plant.name}"></span>
                 </a>
 
@@ -73,8 +73,10 @@
           scene.remove(current_object);
         }
 
-        console.log($(this).attr("src"));
-        loadModel($(this).attr("src"));
+        var url = $(this).attr("src") + "?timestamp=" + $(this).attr("id")
+        console.log(url);
+        // loadModel($(this).attr("src"));
+        loadModel(url);
     });
 
     $("#ARButton").click(function(){

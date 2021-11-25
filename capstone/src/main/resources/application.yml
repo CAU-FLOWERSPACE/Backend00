@@ -25,3 +25,7 @@ spring:
     prefix: classpath:templates/
     suffix: .html
     cache: false
+
+#spring.mvc.static-path-pattern: /static/**
+#  mvc:
+#    static-path-pattern: /static/**

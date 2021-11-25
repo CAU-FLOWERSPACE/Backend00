@@ -40,10 +40,10 @@ public class ARController {
     public String placeAR(Model model) {  //
         List<ArPlantResponse> arPlantResponses = new ArrayList<>();
         arPlantResponses.add(new ArPlantResponse(63L, "제라니움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/제라니움.jpg"));
-        arPlantResponses.add(new ArPlantResponse(63L, "제라니움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/제라니움.jpg"));
-        arPlantResponses.add(new ArPlantResponse(63L, "제라니움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/제라니움.jpg"));
-        arPlantResponses.add(new ArPlantResponse(63L, "제라니움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/제라니움.jpg"));
-        arPlantResponses.add(new ArPlantResponse(63L, "제라니움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/제라니움.jpg"));
+        arPlantResponses.add(new ArPlantResponse(50L, "아이비(헤데라)", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/아이비(헤데라).jpg"));
+        arPlantResponses.add(new ArPlantResponse(52L, "안스리움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/안스리움.jpg"));
+        arPlantResponses.add(new ArPlantResponse(43L, "시클라멘", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/시클라멘.jpg"));
+        arPlantResponses.add(new ArPlantResponse(46L, "아가베", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/아가베.jpg"));
         ArPlantDto arPlantDto1 = new ArPlantDto(arPlantResponses);
 
         model.addAttribute("plantList", arPlantDto1.getPlants());
