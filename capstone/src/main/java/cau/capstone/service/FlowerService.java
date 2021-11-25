@@ -2,7 +2,8 @@ package cau.capstone.service;
 
 import cau.capstone.domain.Flower;
 import cau.capstone.dto.flower.FlowerListResponse;
-import cau.capstone.dto.flower.FlowerResponse;
+import cau.capstone.dto.flower.FlowerListResponse.FlowerResponse;
+import cau.capstone.dto.flower.FlowerInfoResponse;
 import cau.capstone.repository.FlowerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,22 +22,23 @@ public class FlowerService {
 
   // 꽃 추천 목록
   @Transactional(readOnly = true)
-  public List<FlowerListResponse> recommendFlowerList(String color) {
+  public FlowerListResponse recommendFlowerList(String color) {
     List<Flower> flowerList = flowerRepository.findFlowersByColor(color);
-    List<FlowerListResponse> flowerListResponses = new ArrayList<>();
+    List<FlowerResponse> flowerResponseList = new ArrayList<>();
     for (Flower entity : flowerList) {
-      flowerListResponses.add(new FlowerListResponse(entity));
+      flowerResponseList.add(new FlowerResponse(entity));
     }
 
-    return flowerListResponses;
+
+    return new FlowerListResponse(color, flowerResponseList);
   }
 
   // 꽃 상세보기
   @Transactional
-  public FlowerResponse getFlowerInfo(Long flower_id) {
+  public FlowerInfoResponse getFlowerInfo(Long flower_id) {
     Flower entity = flowerRepository.findById(flower_id).get();
 
-    return new FlowerResponse(entity);
+    return new FlowerInfoResponse(entity);
   }
 
 

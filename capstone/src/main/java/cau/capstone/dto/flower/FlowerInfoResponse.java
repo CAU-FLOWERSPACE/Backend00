@@ -4,7 +4,7 @@ import cau.capstone.domain.Flower;
 import lombok.Getter;
 
 @Getter
-public class FlowerResponse {
+public class FlowerInfoResponse {
 
   private String name; // 꽃 이름
 
@@ -17,7 +17,7 @@ public class FlowerResponse {
   private String image; // 이미지url
 
 
-  public FlowerResponse(Flower entity) {
+  public FlowerInfoResponse(Flower entity) {
     this.name = entity.getFlower_name();
     this.mean = entity.getMean();
     this.feature = entity.getFlower_feature();

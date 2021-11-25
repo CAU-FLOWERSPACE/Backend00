@@ -1,22 +1,31 @@
 package cau.capstone.dto.flower;
 
 import cau.capstone.domain.Flower;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class FlowerListResponse {
+    private String color;
+    private List<FlowerResponse> flowers;
 
-  private Long id;
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class FlowerResponse {
+        private Long id;
+        private String name;
+        private String image;
 
-  private String name; // 꽃 이름
-
-  private String image; // 이미지url
-
-  public FlowerListResponse(Flower entity) {
-    this.id = entity.getFlower_id();
-    this.name = entity.getFlower_name();
-    this.image = entity.getImage();
-  }
+        public FlowerResponse(Flower flower) {
+          this.id = flower.getFlower_id();
+          this.name = flower.getFlower_name();
+          this.image = flower.getImage();
+        }
+    }
 }
