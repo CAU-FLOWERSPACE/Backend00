@@ -18,10 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -42,18 +39,27 @@ public class PlaceService {
         for (Recommend entity : recommendList) {
             plantResponses.add(new PlantResponse(entity.getPlant()));
         }
-
-        return new PlacePlantResponse(place.getPlace(), place.getEffect(), plantResponses);
+        
+        return new PlacePlantResponse(changePlace(place.getPlace()), place.getEffect(), plantResponses);
     }
 
-    public PlacePlantInfoResponse getPlacePlantInfo(Long id) {
-        Plant plant = plantRepository.findById(id).get();
-//        List<Recommend> recommendList = recommendRepository.findRecommendsByPlant(plant);
-//        List<PlaceResponse> placeResponses = new ArrayList<>();
+  private String changePlace(String place) {
+      if (Objects.equals(place, "livingroom")) {
+          place = "거실";
+      } else if (Objects.equals(place, "bedroom")) {
+          place = "침실";
+      } else if (Objects.equals(place, "bathroom")) {
+          place = "화장실";
+      } else if (Objects.equals(place, "kitchen")) {
+          place = "주방";
+      } else {
+          place = "공부방";
+      }
+      return place;
+  }
 
-//        for (Recommend entity : recommendList) {
-//            placeResponses.add(new PlaceResponse(entity.getPlace()));
-//        }
+  public PlacePlantInfoResponse getPlacePlantInfo(Long id) {
+        Plant plant = plantRepository.findById(id).get();
 
         return new PlacePlantInfoResponse(plant);  // , placeResponses
     }
@@ -84,8 +90,6 @@ public class PlaceService {
 
       usedColors.put(color.toString(), true);
 
-      System.out.println(color.toString());
-
       if (colorAlgorithm.getBaseS() < 50) {
         flowerList.addAll(flowerRepository.findByColorAndSGreaterThanEqual(color.toString(), 50));
       } else {
@@ -100,8 +104,6 @@ public class PlaceService {
       }
 
       usedColors.put(color.toString(), true);
-
-      System.out.println(color.toString());
 
 //    flowerList.addAll(flowerRepository.findFlowerByColor(color.toString()));
 

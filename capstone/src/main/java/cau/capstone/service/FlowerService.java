@@ -18,28 +18,25 @@ import java.util.List;
 @Service
 public class FlowerService {
 
-  private final FlowerRepository flowerRepository;
+    private final FlowerRepository flowerRepository;
 
-  // 꽃 추천 목록
-  @Transactional(readOnly = true)
-  public FlowerListResponse recommendFlowerList(String color) {
-    List<Flower> flowerList = flowerRepository.findFlowersByColor(color);
-    List<FlowerResponse> flowerResponseList = new ArrayList<>();
-    for (Flower entity : flowerList) {
-      flowerResponseList.add(new FlowerResponse(entity));
+    // 꽃 추천 목록
+    @Transactional(readOnly = true)
+    public FlowerListResponse recommendFlowerList(String color) {
+      List<Flower> flowerList = flowerRepository.findFlowersByColor(color);
+      List<FlowerResponse> flowerResponseList = new ArrayList<>();
+      for (Flower entity : flowerList) {
+        flowerResponseList.add(new FlowerResponse(entity));
+      }
+
+      return new FlowerListResponse(color, flowerResponseList);
     }
 
+    // 꽃 상세보기
+    @Transactional
+    public FlowerInfoResponse getFlowerInfo(Long flower_id) {
+      Flower entity = flowerRepository.findById(flower_id).get();
 
-    return new FlowerListResponse(color, flowerResponseList);
-  }
-
-  // 꽃 상세보기
-  @Transactional
-  public FlowerInfoResponse getFlowerInfo(Long flower_id) {
-    Flower entity = flowerRepository.findById(flower_id).get();
-
-    return new FlowerInfoResponse(entity);
-  }
-
-
+      return new FlowerInfoResponse(entity);
+    }
 }
