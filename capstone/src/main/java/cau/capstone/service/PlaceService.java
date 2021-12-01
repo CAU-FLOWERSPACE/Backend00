@@ -40,7 +40,7 @@ public class PlaceService {
             plantResponses.add(new PlantResponse(entity.getPlant()));
         }
 
-        return new PlacePlantResponse(changePlace(place.getPlace()), place.getEffect(), plantResponses);
+        return new PlacePlantResponse(apiRequest.getImage_path(), changePlace(place.getPlace()), place.getEffect(), plantResponses);
     }
 
   private String changePlace(String place) {

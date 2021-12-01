@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PlacePlantResponse {
+    private String user_image;
     private String place;
     private String effect;
     private List<PlantResponse> plants;
