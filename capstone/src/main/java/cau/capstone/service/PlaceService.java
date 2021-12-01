@@ -39,7 +39,7 @@ public class PlaceService {
         for (Recommend entity : recommendList) {
             plantResponses.add(new PlantResponse(entity.getPlant()));
         }
-        
+
         return new PlacePlantResponse(changePlace(place.getPlace()), place.getEffect(), plantResponses);
     }
 
@@ -117,6 +117,6 @@ public class PlaceService {
     for(Flower entity : flowerList) {
       flowerResponses.add(new FlowerResponse(entity));
     }
-    return new PlaceFlowerResponse(flowerResponses);
+    return new PlaceFlowerResponse(apiRequest.getImage_path(), flowerResponses);
   }
 }
