@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/css/main.css">
 <!--    <link type="text/css" rel="stylesheet" href="../static/css/main.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+<!--    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>-->
 </head>
 <body>
     <!-- START Menu-bar -->
@@ -20,8 +21,8 @@
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 <!--                <a class="plant-obj" id="1" ><img src="../static/2d/아이라이너 장미.jpg" width="90px" height="120px"><p>아이라이너 장미</p></a>-->
-                <a class="plant-obj" th:each="plant : ${plantList}" th:id="${plant.id}" th:src="${plant.image}">
-                    <img th:src="${plant.image}" width="90px" height="120px">
+                <a class="plant-obj" th:each="plant: ${plantList}" th:id="${plant.id}" th:src="${plant.image}" crossorigin="anonymous">
+                    <img th:src="${plant.image}" width="90px" height="120px" crossorigin="anonymous">
                     <span th:text="${plant.name}"></span>
                 </a>
 

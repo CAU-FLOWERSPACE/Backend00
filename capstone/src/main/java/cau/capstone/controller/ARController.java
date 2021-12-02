@@ -22,7 +22,7 @@ public class ARController {
 
         for (ArPlantResponse entity : arPlantDto.getPlants()) {
             entity.setImage(entity.getImage()+"?timestamp="+entity.getId());
-            System.out.println(entity.getImage());
+//            System.out.println(entity.getImage());
         }
         model.addAttribute("plantList", arPlantDto.getPlants());
 
@@ -37,6 +37,10 @@ public class ARController {
         arPlantResponses.add(new ArPlantResponse(52L, "안스리움", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/안스리움.jpg"));
         arPlantResponses.add(new ArPlantResponse(43L, "시클라멘", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/시클라멘.jpg"));
         arPlantResponses.add(new ArPlantResponse(46L, "아가베", "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/plant1/아가베.jpg"));
+        for (ArPlantResponse entity : arPlantResponses) {
+            entity.setImage(entity.getImage()+"?timestamp="+entity.getId());
+//            System.out.println(entity.getImage());
+        }
         ArPlantDto arPlantDto1 = new ArPlantDto(arPlantResponses);
 
         model.addAttribute("plantList", arPlantDto1.getPlants());
