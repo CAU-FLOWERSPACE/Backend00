@@ -21,7 +21,7 @@
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 <!--                <a class="plant-obj" id="1" ><img src="../static/2d/아이라이너 장미.jpg" width="90px" height="120px"><p>아이라이너 장미</p></a>-->
-                <a class="plant-obj" th:each="plant: ${plantList}" th:id="${plant.id}" th:src="${plant.image}" crossorigin="anonymous">
+                <a class="plant-obj" th:each="plant: ${plantList}" th:id="${plant.id}" th:src="${plant.image}">
                     <img th:src="${plant.image}" width="90px" height="120px" crossorigin="anonymous">
                     <span th:text="${plant.name}"></span>
                 </a>
@@ -48,7 +48,7 @@
 
 <script type="module" th:inline="javascript">
 
-    import * as THREE from 'https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/js/three.module.js';  // ?timestamp=123
+    import * as THREE from "https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/js/three.module.js";  // ?timestamp=123
     import { ARButton } from 'https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/js/ARButton.js';
 
     import { OrbitControls } from 'https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/js/OrbitControls.js';
