@@ -20,9 +20,10 @@ public class ARController {
     @RequestMapping(value = "/api/ar", method = RequestMethod.POST, produces="application/json; charset=utf-8;")  // POST
     public String placeAR(@RequestBody ArPlantDto arPlantDto, Model model) {
 
-//        for (ArPlantResponse entity : arPlantDto.getPlants()) {
-//            System.out.println(entity.getImage());
-//        }
+        for (ArPlantResponse entity : arPlantDto.getPlants()) {
+            entity.setImage(entity.getImage()+"?timestamp="+entity.getId());
+            System.out.println(entity.getImage());
+        }
         model.addAttribute("plantList", arPlantDto.getPlants());
 
         return "webAR";
