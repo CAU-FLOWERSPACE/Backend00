@@ -8,7 +8,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="#">  <!-- favicon.ioc 404 not found -->
-    <link type="text/css" rel="stylesheet" href="https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/css/main.css">
+<!--    <link type="text/css" rel="stylesheet" href="https://dlagpwjd-flower.s3.ap-northeast-2.amazonaws.com/static/css/main.css">-->
+    <link type="text/css" rel="stylesheet" href="../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -19,8 +20,8 @@
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
 <!--                <a class="plant-obj" id="1" ><img src="../static/2d/아이라이너 장미.jpg" width="90px" height="120px"><p>아이라이너 장미</p></a>-->
-                <a class="plant-obj" th:each="plant : ${plantList}" th:id="${plant.id}" th:src="${plant.image}" crossorigin="anonymous">
-                    <img th:src="${plant.image}" width="90px" height="120px" crossorigin="anonymous">
+                <a class="plant-obj" th:each="plant : ${plantList}" th:id="${plant.id}" th:src="${plant.image}">
+                    <img th:src="${plant.image}" width="90px" height="120px">
                     <span th:text="${plant.name}"></span>
                 </a>
 
