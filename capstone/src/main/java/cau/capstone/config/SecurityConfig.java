@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -45,8 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+      .csrf().disable()
       .authorizeRequests()
-        // AR page 는 인증이 필요함
+//      .antMatchers("/api/ar").authenticated() // AR page 는 로그인한 사용자만 접속 가능 *** ar url 확인하기
+//      .antMatchers("/", "/api/user/signup").permitAll()
         .anyRequest().permitAll()
         .and()
       .formLogin()
@@ -67,10 +70,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           }
         })
         .and()
-      .cors()
-        .configurationSource(corsConfigurationSource())
+      .logout()
+      .logoutUrl("/logout")
+      .permitAll()
+      .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
       .and()
-      .csrf().disable();
+      .cors()
+        .configurationSource(corsConfigurationSource());
+//      .and()
+//      .logout()
+//     .invalidateHttpSession(true); // HTTP Session 초기화
+//     .deleteCookies("JSESSIONID"); // 특정 쿠키 제거
+
 
 //    http
 //      .oauth2Login()
