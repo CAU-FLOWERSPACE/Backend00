@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           @Override
           public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
             log.info("[login success]");
-//            response.sendRedirect("/api/test");
+            response.sendRedirect("/api/test");
           }
         })
         .failureHandler(new AuthenticationFailureHandler() {
