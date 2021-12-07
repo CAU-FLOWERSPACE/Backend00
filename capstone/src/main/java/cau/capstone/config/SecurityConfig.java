@@ -74,8 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .logoutUrl("/logout")
       .permitAll()
       .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
-      .deleteCookies("JSESSIONID") // 특정 쿠키 제거
-      .invalidateHttpSession(true) // HTTP Session 초기화
+//      .deleteCookies("JSESSIONID") // 특정 쿠키 제거
+//      .invalidateHttpSession(true) // HTTP Session 초기화
       .and()
       .cors()
         .configurationSource(corsConfigurationSource());
