@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**")
+    registry.addMapping("**") // test2 /** -> ** 로 변경
       .allowCredentials(true)
       .allowedOriginPatterns("*")
 //      .allowedOrigins("*")
